@@ -18,18 +18,18 @@
   </div>
 
   <div id="cipher-area">
-    <textarea name="plaintext" id="plaintext-area" cols="40" rows="15" placeholder="Type or paste your text to encrypt..."></textarea>
+    <textarea [(ngModel)]="plaintext" name="plaintext" id="plaintext-area" cols="40" rows="15" placeholder="Type or paste your text to encrypt..."></textarea>
 
     <div id="cipher-options">
-      <select name="algorithm-options" id="algorithms-options">
-        <option value="">-- Algorithm --</option>
-        <option value="Ceaser's Cipher">Ceaser's Cipher</option>
+      <select [(ngModel)]="selected" name="algorithm-options" id="algorithms-options">
+        <option value="" selected>-- Algorithms --</option>
+        <option *ngFor="let item of algorithmsList" [ngValue]="item.value">{{ item.label }}</option>
       </select>
   
-      <button>Encrypt</button>  
+      <button (click)="encrypt()">Encrypt</button>  
     </div>
         
-    <textarea name="ciphertext" id="ciphertext-area" cols="40" rows="15" disabled></textarea>
+    <textarea [(ngModel)]="ciphertext" name="ciphertext" id="ciphertext-area" cols="40" rows="15" disabled></textarea>
   </div>
 
 

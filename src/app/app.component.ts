@@ -1,15 +1,29 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
-
+import { FormsModule } from '@angular/forms';
+import { algorithms } from './cipher.functions';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet],
+  imports: [CommonModule, FormsModule, RouterOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'plain-to-cipher';
+
+  algorithmsList = [
+    { label: "Ceaser's Cipher", value: 'ceaser' }
+  ]
+
+  plaintext: string = '';
+  ciphertext: string = '';
+  selected: string = '';
+
+  encrypt() {
+    let algorithm = algorithms[this.selected as keyof typeof algorithms].encryptFunction();
+    this.ciphertext = algorithm(this.plaintext, {});
+  }
+
 }
