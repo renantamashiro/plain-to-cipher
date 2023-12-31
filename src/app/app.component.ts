@@ -22,7 +22,13 @@ export class AppComponent {
 
   encrypt() {
     let algorithm = algorithms[this.selected as keyof typeof algorithms].encryptFunction();
-    this.ciphertext = algorithm(this.plaintext, {});
+    try {
+      this.ciphertext = algorithm(this.plaintext, 5);
+    }
+    catch(e) {
+      alert(e);
+    }
+    
   }
 
 }
