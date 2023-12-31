@@ -8,8 +8,7 @@ import { algorithms } from './cipher.functions';
   selector: 'app-root',
   standalone: true,
   imports: [CommonModule, FormsModule, RouterOutlet],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  templateUrl: './app.component.html'
 })
 export class AppComponent {
 
