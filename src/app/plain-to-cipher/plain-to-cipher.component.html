@@ -1,0 +1,40 @@
+<main class="max-w-5xl ml-auto mr-auto">
+    <div class="p-5">
+      <h1 class="flex justify-center text-4xl">
+        Plain to Cipher
+      </h1>
+    
+      <div class="grid justify-items-center content-center">
+        <p>change to:</p>
+        <a href="#cipher-to-plain">cipher to plain</a>
+        <div>
+          <----------------
+        </div>
+      </div>
+    </div>
+    
+    <div class="m-6 flex content-center">
+      <textarea class="ml-2 mr-2 p-3 border border-1 border-white rounded-2xl bg-black" [(ngModel)]="plaintext" name="plaintext" id="plaintext-area" cols="40" rows="15" placeholder="Type or paste your text to encrypt..."></textarea>
+  
+      <div class="grid items-center content-between mr-2 ml-2">
+        <select class="bg-black" [(ngModel)]="selected" name="algorithm-options" id="algorithms-options">
+          <option value="" selected>-- Algorithms --</option>
+          <option *ngFor="let item of algorithmsList" [ngValue]="item.value">{{ item.label }}</option>
+        </select>
+    
+        <button class="border border-solid border-gray-200 bg-neutral-900 hover:bg-neutral-500" (click)="encrypt()">Encrypt</button>  
+      </div>
+          
+      <textarea class="ml-2 mr-2 p-3 border border-1 border-white rounded-2xl bg-black" [(ngModel)]="ciphertext" name="ciphertext" id="ciphertext-area" cols="40" rows="15" disabled></textarea>
+    </div>
+  
+    <section class="m-6 mt-20">
+      <h2 class="text-2xl">Cipher Algorithms</h2>
+  
+      <article>
+        <h3 class="text-xl m-4">Ceaser's Cipher</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce leo diam, tincidunt vel metus vitae, cursus laoreet turpis. Nulla consequat, lectus vitae iaculis tincidunt, sapien lectus molestie nibh, et sagittis purus sem eget risus. Nulla ut risus interdum, cursus dui quis, mattis velit. Sed sodales condimentum eros. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere</p>
+      </article>
+  
+    </section>
+  </main>
