@@ -1,6 +1,8 @@
+import { Parameter } from "./models/parameter.model";
 
 interface AlgorithmMetadata {
   name: string,
+  parameters: Parameter[],
   encryptFunction(this: AlgorithmMetadata): (plaintext: string, parameters: any) => string;
 }
 
@@ -8,6 +10,9 @@ interface AlgorithmMetadata {
 export const algorithms = {
   'ceaser': {
     name: "Ceaser's Cipher",
+    parameters: [
+      {label: 'K', description: 'Number of positions down the alphabet', type: 'number'}
+    ],
     encryptFunction: function (this: AlgorithmMetadata) {
       return (plaintext: string, parameters: any) => {
         return ceaserCipher(plaintext, parameters);

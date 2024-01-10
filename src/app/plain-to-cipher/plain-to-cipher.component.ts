@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { algorithms } from '../cipher.functions';
+import { Parameter } from '../models/parameter.model';
 
 @Component({
   selector: 'app-plain-to-cipher',
@@ -15,9 +16,12 @@ export class PlainToCipherComponent {
     { label: "Ceaser's Cipher", value: 'ceaser' }
   ]
 
+  
   plaintext: string = '';
   ciphertext: string = '';
   selected: string = '';
+
+  parameters: Parameter[] = [];
 
   encrypt() {
     let algorithm = algorithms[this.selected as keyof typeof algorithms].encryptFunction();
@@ -27,5 +31,9 @@ export class PlainToCipherComponent {
     catch (e) {
       alert(e);
     }
+  }
+
+  setParameters() {
+    this.parameters = algorithms[this.selected as keyof typeof algorithms].parameters;
   }
 }
