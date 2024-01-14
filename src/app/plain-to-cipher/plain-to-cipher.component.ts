@@ -8,7 +8,8 @@ import { Parameter } from '../models/parameter.model';
   selector: 'app-plain-to-cipher',
   standalone: true,
   imports: [CommonModule, FormsModule],
-  templateUrl: './plain-to-cipher.component.html'
+  templateUrl: './plain-to-cipher.component.html',
+  styleUrl: './plain-to-cipher.component.scss'
 })
 export class PlainToCipherComponent {
 
@@ -16,7 +17,7 @@ export class PlainToCipherComponent {
     { label: "Ceaser's Cipher", value: 'ceaser' }
   ]
 
-  
+
   plaintext: string = '';
   ciphertext: string = '';
   selected: string = '';
@@ -26,7 +27,7 @@ export class PlainToCipherComponent {
   encrypt() {
     let algorithm = algorithms[this.selected as keyof typeof algorithms].encryptFunction();
     try {
-      this.ciphertext = algorithm(this.plaintext, 5);
+      this.ciphertext = algorithm(this.plaintext, this.parameters);
     }
     catch (e) {
       alert(e);
@@ -34,6 +35,10 @@ export class PlainToCipherComponent {
   }
 
   setParameters() {
-    this.parameters = algorithms[this.selected as keyof typeof algorithms].parameters;
+    if (this.selected === '') {
+      this.parameters = [];
+    } else {
+      this.parameters = algorithms[this.selected as keyof typeof algorithms].parameters;
+    }
   }
 }
