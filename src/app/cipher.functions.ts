@@ -1,29 +1,32 @@
 import { LowerCasePipe } from "@angular/common";
 import { Parameter } from "./models/parameter.model";
+import { caeser } from "./const/descriptions";
 
-interface AlgorithmMetadata {
+export interface AlgorithmMetadata {
   name: string,
   parameters: Parameter[],
+  description: string,
   encryptFunction(this: AlgorithmMetadata): (plaintext: string, parameters: any) => string;
 }
 
 
 export const algorithms = {
-  'ceaser': {
+  'caeser': {
     name: "Ceaser's Cipher",
     parameters: [
       {label: 'K', description: 'Number of positions down the alphabet', type: 'number'}
     ],
+    description: caeser,
     encryptFunction: function (this: AlgorithmMetadata) {
       return (plaintext: string, parameters: any) => {
-        return ceaserCipher(plaintext, parameters);
+        return caeserCipher(plaintext, parameters);
       }
     }
   }
 }
 
 
-function ceaserCipher(plaintext: string, parameters: Parameter[]): string {
+function caeserCipher(plaintext: string, parameters: Parameter[]): string {
   var ciphertext = '';
   var plaintext = plaintext.toLocaleLowerCase();
 
