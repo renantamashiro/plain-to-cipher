@@ -1,11 +1,8 @@
-import { LowerCasePipe } from "@angular/common";
 import { Parameter } from "./models/parameter.model";
-import { caeser } from "./const/descriptions";
 
 export interface AlgorithmMetadata {
   name: string,
   parameters: Parameter[],
-  description: string,
   encryptFunction(this: AlgorithmMetadata): (plaintext: string, parameters: any) => string;
 }
 
@@ -16,7 +13,6 @@ export const algorithms = {
     parameters: [
       {label: 'K', description: 'Number of positions down the alphabet', type: 'number'}
     ],
-    description: caeser,
     encryptFunction: function (this: AlgorithmMetadata) {
       return (plaintext: string, parameters: any) => {
         return caeserCipher(plaintext, parameters);

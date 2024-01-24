@@ -6,7 +6,7 @@ describe('ceasear cipher test suite', () => {
     const expectedResult = 'cvvcem cv fcyp';
     const plaintext: string = 'attack at dawn'
 
-    let ceaserEncrypt = algorithms.ceaser.encryptFunction();
+    let ceaserEncrypt = algorithms.caeser.encryptFunction();
 
     expect(ceaserEncrypt(plaintext, 2)).toEqual(expectedResult);
   });
@@ -15,7 +15,7 @@ describe('ceasear cipher test suite', () => {
     const expectedResult = 'attack at dawn';
     const plaintext: string = 'cvvcem cv fcyp'
 
-    let ceaserEncrypt = algorithms.ceaser.encryptFunction();
+    let ceaserEncrypt = algorithms.caeser.encryptFunction();
 
     expect(ceaserEncrypt(plaintext, -2)).toEqual(expectedResult);
   });
