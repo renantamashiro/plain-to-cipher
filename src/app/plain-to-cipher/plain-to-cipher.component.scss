@@ -64,6 +64,33 @@ main {
     font-size: 18px;
 }
 
+.option-box {
+    border: 1px;
+    border-style: solid;
+    margin-left: 5px;
+    margin-right: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    border-right-width: 4px;
+    cursor: pointer;
+
+    &:active {
+        border-color: blue;
+    }
+}
+
+.selected-input-type {
+    border: 1px;
+    border-style: solid;
+    margin-left: 5px;
+    margin-right: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    border-right-width: 4px;
+    border-color: blue;
+    cursor: pointer;
+}
+
 #main-title-block {
     padding: 20px;
 }
@@ -116,3 +143,10 @@ main {
     padding-top: 40px;
 }
 
+#input-options {
+    position: absolute;
+    right: auto;
+    left: 30%;
+    top: 227px;
+    display: flex;
+}

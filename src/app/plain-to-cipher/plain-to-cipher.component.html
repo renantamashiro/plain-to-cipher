@@ -10,7 +10,14 @@
     </div>
   </div>
 
+  <div [innerHTML]="createJsonTemplate()"></div>
+
   <div id="main-content" class="flex-container">
+    <div id="input-options">
+      <div (click)="selectInputType('text')" [class]="getInputTypeClass('text')"><span>Text</span></div>
+      <div (click)="selectInputType('json')" [class]="getInputTypeClass('json')"><span>JSON</span></div>
+    </div>
+
     <textarea
       class="textarea-container input-highlight-area" [(ngModel)]="plaintext" name="plaintext" id="plaintext-area" cols="40" rows="15"
       placeholder="Type or paste your text to encrypt..."></textarea>

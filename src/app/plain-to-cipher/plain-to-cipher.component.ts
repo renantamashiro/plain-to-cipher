@@ -27,10 +27,10 @@ export class PlainToCipherComponent {
   plaintext: string = '';
   ciphertext: string = '';
   selected: string = '';
+  selectedInputType: string = '';
   algorithm: AlgorithmMetadata | undefined;
 
   markdown: any;
-
   parameters: Parameter[] = [];
 
   encrypt() {
@@ -53,5 +53,25 @@ export class PlainToCipherComponent {
       this.parameters = algorithms[this.selected as keyof typeof algorithms].parameters;
       this.http.get(`../../assets/${this.selected}.md`, {responseType: 'text'}).subscribe(r => this.markdown = r);
     }
+  }
+
+  getInputTypeClass(inputType: string) {
+    if (this.selectedInputType === inputType) {
+      return 'selected-input-type';
+    } else {
+      return 'option-box';
+    }
+  }
+
+  selectInputType(inputType: string) {
+    this.selectedInputType = inputType;
+  }
+
+  createJsonTemplate() {
+    return `
+    <div class="quote">{</div>
+    <div class="field">"field": </div><div class="value">"value"</div>
+    <div class="quote">}</div>
+    `;
   }
 }
