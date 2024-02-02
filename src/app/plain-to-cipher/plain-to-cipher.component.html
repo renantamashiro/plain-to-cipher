@@ -10,41 +10,41 @@
     </div>
   </div>
 
-  <div [innerHTML]="createJsonTemplate()"></div>
-
-  <div id="main-content" class="flex-container">
-    <div id="input-options">
+  <div id="main-content">
+    <div id="input-options" class="flex-container">
       <div (click)="selectInputType('text')" [class]="getInputTypeClass('text')"><span>Text</span></div>
       <div (click)="selectInputType('json')" [class]="getInputTypeClass('json')"><span>JSON</span></div>
     </div>
 
-    <textarea
-      class="textarea-container input-highlight-area" [(ngModel)]="plaintext" name="plaintext" id="plaintext-area" cols="40" rows="15"
-      placeholder="Type or paste your text to encrypt..."></textarea>
+    <div class="flex-container">
+      <textarea class="textarea-container input-highlight-area" [(ngModel)]="plaintext" name="plaintext"
+        id="plaintext-area" cols="40" rows="15" placeholder="Type or paste your text to encrypt..."></textarea>
 
-    <div id="select-parameter-area">
-      <select class="input-highlight-area"
-        [(ngModel)]="selected" (change)="setParameters()" name="algorithm-options" id="algorithms-options">
-        <option class="p-2" value="" selected>-- Algorithms --</option>
-        <option class="p-2" *ngFor="let item of algorithmsList" [ngValue]="item.value">{{ item.label }}</option>
-      </select>
+      <div id="select-parameter-area">
+        <select class="input-highlight-area" [(ngModel)]="selected" (change)="setParameters()" name="algorithm-options"
+          id="algorithms-options">
+          <option class="p-2" value="" selected>-- Algorithms --</option>
+          <option class="p-2" *ngFor="let item of algorithmsList" [ngValue]="item.value">{{ item.label }}</option>
+        </select>
 
-      <div>
-        <span>Parameters</span>
-        <div class="flex-container center-aligned" *ngFor="let parameter of parameters">
-          <label class="label-description" [title]="parameter.description">{{ parameter.label }} <p class="label-text-description">({{
-              parameter.description }}):</p></label>
-          <input [(ngModel)]="parameter.value" class="input-decoration" [type]="parameter.type"
-            [name]="parameter.label" />
+        <div>
+          <span>Parameters</span>
+          <div class="flex-container center-aligned" *ngFor="let parameter of parameters">
+            <label class="label-description" [title]="parameter.description">{{ parameter.label }} <p
+                class="label-text-description">({{
+                parameter.description }}):</p></label>
+            <input [(ngModel)]="parameter.value" class="input-decoration" [type]="parameter.type"
+              [name]="parameter.label" />
+          </div>
         </div>
+
+        <button id="button-encrypt" (click)="encrypt()">Encrypt</button>
       </div>
 
-      <button id="button-encrypt"
-        (click)="encrypt()">Encrypt</button>
+      <textarea class="textarea-container input-highlight-area" [(ngModel)]="ciphertext" name="ciphertext"
+        id="ciphertext-area" cols="40" rows="15" disabled></textarea>
     </div>
 
-    <textarea class="textarea-container input-highlight-area" [(ngModel)]="ciphertext"
-      name="ciphertext" id="ciphertext-area" cols="40" rows="15" disabled></textarea>
   </div>
 
   <section id="cipher-content-section" *ngIf="algorithm">

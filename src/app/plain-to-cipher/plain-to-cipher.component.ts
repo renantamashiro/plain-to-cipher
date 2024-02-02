@@ -51,7 +51,7 @@ export class PlainToCipherComponent {
     } else {
       this.algorithm = algorithms[this.selected as keyof typeof algorithms];
       this.parameters = algorithms[this.selected as keyof typeof algorithms].parameters;
-      this.http.get(`../../assets/${this.selected}.md`, {responseType: 'text'}).subscribe(r => this.markdown = r);
+      this.http.get(`../../assets/${this.selected}.md`, { responseType: 'text' }).subscribe(r => this.markdown = r);
     }
   }
 
@@ -65,13 +65,13 @@ export class PlainToCipherComponent {
 
   selectInputType(inputType: string) {
     this.selectedInputType = inputType;
+
+    if (inputType === 'json') {
+      this.createJsonTemplate();
+    }
   }
 
   createJsonTemplate() {
-    return `
-    <div class="quote">{</div>
-    <div class="field">"field": </div><div class="value">"value"</div>
-    <div class="quote">}</div>
-    `;
+    this.plaintext = JSON.stringify(JSON.parse(this.plaintext), undefined, 4);
   }
 }
