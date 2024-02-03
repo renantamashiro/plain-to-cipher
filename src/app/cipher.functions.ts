@@ -18,9 +18,42 @@ export const algorithms = {
         return caeserCipher(plaintext, parameters);
       }
     }
-  }
+  },
+  'blowfish': {
+    name: "Blowfish",
+    parameters: [
+      {label: 'Key', description: 'Encryption key', type: 'string'}
+    ],
+    encryptFunction: function (this: AlgorithmMetadata) {
+      return (plaintext: string, parameters: any) => {
+        return blowfishCipher(plaintext, parameters);
+      }
+    }
+  },
+  'rsa': {
+    name: "RSA",
+    parameters: [
+      {label: 'Public Key', description: 'RSA public key', type: 'string'},
+      {label: 'Private Key', description: 'RSA private key', type: 'string'}
+    ],
+    encryptFunction: function (this: AlgorithmMetadata) {
+      return (plaintext: string, parameters: any) => {
+        return rsaCipher(plaintext, parameters);
+      }
+    }
+  },
 }
 
+function rsaCipher(plaintext: string, parameters: Parameter[]): string {
+  var ciphertext = '';
+  // RSA encryption logic goes here
+  return ciphertext;
+}
+
+function blowfishCipher(plaintext: string, parameters: Parameter[]): string {
+  var ciphertext = '';
+  return ciphertext;
+}
 
 function caeserCipher(plaintext: string, parameters: Parameter[]): string {
   var ciphertext = '';
@@ -32,7 +65,7 @@ function caeserCipher(plaintext: string, parameters: Parameter[]): string {
   for (let index = 0; index < plaintext.length; index++) {
     let code = plaintext.charCodeAt(index);
     if (code >= interval.start && code <= interval.end) {    
-      var charCode = code - Number(parametersMap['K']);
+      var charCode = code + Number(parametersMap['K']);
 
       if (charCode < interval.start) {
         charCode = charCode - interval.start + interval.end + 1;

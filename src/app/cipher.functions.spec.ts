@@ -8,7 +8,7 @@ describe('ceasear cipher test suite', () => {
 
     let ceaserEncrypt = algorithms.caeser.encryptFunction();
 
-    expect(ceaserEncrypt(plaintext, 2)).toEqual(expectedResult);
+    expect(ceaserEncrypt(plaintext, [{label: 'K', value: 2}])).toEqual(expectedResult);
   });
 
   it('decrypt using k equals to -2', () => {
@@ -17,7 +17,7 @@ describe('ceasear cipher test suite', () => {
 
     let ceaserEncrypt = algorithms.caeser.encryptFunction();
 
-    expect(ceaserEncrypt(plaintext, -2)).toEqual(expectedResult);
+    expect(ceaserEncrypt(plaintext, [{label: 'K', value: -2}])).toEqual(expectedResult);
   });
 
 });

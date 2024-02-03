@@ -75,3 +75,4 @@ export class PlainToCipherComponent {
     this.plaintext = JSON.stringify(JSON.parse(this.plaintext), undefined, 4);
   }
 }
+
