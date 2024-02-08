@@ -42,6 +42,39 @@ export const algorithms = {
       }
     }
   },
+  'vigenere': {
+    name: "Vigenere",
+    parameters: [
+      {label: 'Key', description: 'Encryption key', type: 'string'}
+    ],
+    encryptFunction: function (this: AlgorithmMetadata) {
+      return (plaintext: string, parameters: any) => {
+        return vigenereCipher(plaintext, parameters);
+      }
+    }
+  },
+  'aes': {
+    name: "AES",
+    parameters: [
+      {label: 'Key', description: 'Encryption key', type: 'string'}
+    ],
+    encryptFunction: function (this: AlgorithmMetadata) {
+      return (plaintext: string, parameters: any) => {
+        return aesCipher(plaintext, parameters);
+      }
+    }
+  },
+  'DES': {
+    name: "DES",
+    parameters: [
+      {label: 'Key', description: 'Encryption key', type: 'string'}
+    ],
+    encryptFunction: function (this: AlgorithmMetadata) {
+      return (plaintext: string, parameters: any) => {
+        return desCipher(plaintext, parameters);
+      }
+    }
+  }
 }
 
 function rsaCipher(plaintext: string, parameters: Parameter[]): string {
@@ -53,6 +86,18 @@ function rsaCipher(plaintext: string, parameters: Parameter[]): string {
 function blowfishCipher(plaintext: string, parameters: Parameter[]): string {
   var ciphertext = '';
   return ciphertext;
+}
+
+function vigenereCipher(plaintext: string, parameters: Parameter[]): string {
+  return '';
+}
+
+function aesCipher(plaintext: string, parameters: Parameter[]): string {
+  return '';   
+} 
+
+function desCipher(plaintext: string, parameters: Parameter[]): string {
+  return '';
 }
 
 function caeserCipher(plaintext: string, parameters: Parameter[]): string {
