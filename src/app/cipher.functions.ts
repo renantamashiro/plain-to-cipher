@@ -1,4 +1,7 @@
 import { Parameter } from "./models/parameter.model";
+import { AES } from 'crypto-js';
+import { DES } from 'crypto-js';
+import { RC4 } from 'crypto-js';
 
 export interface AlgorithmMetadata {
   name: string,
@@ -30,15 +33,15 @@ export const algorithms = {
       }
     }
   },
-  'rsa': {
-    name: "RSA",
+  'rc4': {
+    name: "RC4",
     parameters: [
       {label: 'Public Key', description: 'RSA public key', type: 'string'},
       {label: 'Private Key', description: 'RSA private key', type: 'string'}
     ],
     encryptFunction: function (this: AlgorithmMetadata) {
       return (plaintext: string, parameters: any) => {
-        return rsaCipher(plaintext, parameters);
+        return rc4Cipher(plaintext, parameters);
       }
     }
   },
@@ -77,13 +80,13 @@ export const algorithms = {
   }
 }
 
-function rsaCipher(plaintext: string, parameters: Parameter[]): string {
-  var ciphertext = '';
-  // RSA encryption logic goes here
-  return ciphertext;
+function rc4Cipher(plaintext: string, parameters: Parameter[]): string {
+  return RC4.encrypt(plaintext, parameters[0].value).toString();
 }
 
 function blowfishCipher(plaintext: string, parameters: Parameter[]): string {
+
+  
   var ciphertext = '';
   return ciphertext;
 }
@@ -93,11 +96,11 @@ function vigenereCipher(plaintext: string, parameters: Parameter[]): string {
 }
 
 function aesCipher(plaintext: string, parameters: Parameter[]): string {
-  return '';   
+  return AES.encrypt(plaintext, parameters[0].value).toString();   
 } 
 
 function desCipher(plaintext: string, parameters: Parameter[]): string {
-  return '';
+  return DES.encrypt(plaintext, parameters[0].value).toString();
 }
 
 function caeserCipher(plaintext: string, parameters: Parameter[]): string {
