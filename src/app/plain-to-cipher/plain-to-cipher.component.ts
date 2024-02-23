@@ -21,7 +21,12 @@ export class PlainToCipherComponent {
   }
 
   algorithmsList = [
-    { label: "Caeser's Cipher", value: 'caeser' }
+    { label: "Caeser's Cipher", value: 'caeser' },
+    { label: 'Vigenere Cipher', value: 'vigenere' },
+    { label: 'AES', value: 'aes'},
+    { label: 'DES', value: 'des'},
+    { label: 'RSA', value: 'rsa'},
+    { label: 'Blowfish', value: 'blowfish'}
   ];
 
   plaintext: string = '';

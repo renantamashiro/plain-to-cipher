@@ -21,3 +21,16 @@ describe('ceasear cipher test suite', () => {
   });
 
 });
+
+describe('vigenere cipher test suite', () => {
+
+  it('encrypt using key "key"', () => {
+    const expectedResult = 'kfa';
+    const plaintext: string = 'abc';
+
+    let vigenereEncrypt = algorithms.vigenere.encryptFunction();
+
+    expect(vigenereEncrypt(plaintext, [{label: 'Key', value: 'key'}])).toEqual(expectedResult);
+  });
+
+});

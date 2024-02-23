@@ -85,14 +85,38 @@ function rc4Cipher(plaintext: string, parameters: Parameter[]): string {
 }
 
 function blowfishCipher(plaintext: string, parameters: Parameter[]): string {
-
-  
   var ciphertext = '';
   return ciphertext;
 }
 
+
 function vigenereCipher(plaintext: string, parameters: Parameter[]): string {
-  return '';
+  var ciphertext = '';
+  var plaintext = plaintext.toLocaleLowerCase();
+
+  const parametersMap = buildParameters(parameters);
+  const key = parametersMap['Key'].toLocaleLowerCase();
+  const keyLength = key.length;
+  const interval = {start: 97, end: 122};
+
+  for (let index = 0; index < plaintext.length; index++) {
+    let code = plaintext.charCodeAt(index);
+    if (code >= interval.start && code <= interval.end) {
+      let keyIndex = index % keyLength;
+      let keyChar = key.charCodeAt(keyIndex) - 97;
+      let charCode = code + keyChar;
+
+      if (charCode > interval.end) {
+        charCode = charCode - interval.end + interval.start - 1;
+      }
+      ciphertext = ciphertext.concat(String.fromCharCode(charCode));
+    } else if (code === 32) {
+      ciphertext = ciphertext.concat(' ');
+    } else {
+      throw new Error('Wrong input format. Expecting only alphabet input.');
+    }
+  }
+  return ciphertext;
 }
 
 function aesCipher(plaintext: string, parameters: Parameter[]): string {
@@ -127,7 +151,6 @@ function caeserCipher(plaintext: string, parameters: Parameter[]): string {
   }
   return ciphertext;
 }
-
 
 function buildParameters(parameters: Parameter[]) {
   var parametersMap: any = {};
